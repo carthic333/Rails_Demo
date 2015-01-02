@@ -1,0 +1,18 @@
+<%= form_for(@order) do |o|%>
+	<div class="shipping_address">
+		<%= o.label :shipping_address%>
+		<%= o.text_field :shipping_address%>
+	</div>
+	<div class="billing_address">
+		<%= o.label :billing_address%>
+		<%= o.text_field :billing_address%>
+	</div>
+	<div class="status">
+		<%= o.label :status%>
+		<%= o.text_field :status%>
+	</div>
+	<div class="action">
+		<%= o.submit %>
+	</div>
+<% end %>
+

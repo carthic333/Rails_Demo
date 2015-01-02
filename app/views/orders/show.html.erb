@@ -1,0 +1,65 @@
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading"><h3>Order-<%= @order.id %></h3><strong>Status: </strong><span class="label label-info"><%= @order.status %></span></div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2"><strong>Product Name</strong></div>
+				<div class="col-md-2"><strong>Unit Price</strong></div>
+				<div class="col-md-2"><strong>Quantity</strong></div>
+				<div class="col-md-2"><strong>Subtotal</strong></div>
+				<div class="col-md-1"><strong>Tax</strong></div>
+				<div class="col-md-1"><strong>Total</strong></div>
+				<div class="col-md-2"></div>
+			</div>
+			<hr>	
+			<% @order.line_items.each do |l|%>
+			<div class="row">
+				<div class="col-md-2"><%= l.product.product_name %></div>
+				<div class="col-md-2"><%= l.unit_price %></div>
+				<div class="col-md-2">
+					<% if @order.status == 'cart' %>
+						<%=  render 'form_lineitem_edit', locals: {line_item: l} %>
+					<% else %>
+						<%= l.quantity %>
+					<% end %>
+				</div>
+				<div class="col-md-2"><%= l.total %></div>
+				<div class="col-md-1"><%= l.tax %></div>
+				<div class="col-md-1"><%= l.total + l.tax %></div>
+				<div class="col-md-2">
+					<% if @order.status == 'cart' %>
+						<%= button_to 'Remove', line_items_delete_path(l), :method => :get, :class => "btn btn-danger"%>
+					<% end %>
+				</div>
+			</div>
+			<br/>
+			<% end %>
+			<hr>	
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-2"><strong>Totals: </strong></div>
+				<div class="col-md-2"><strong><%= @order.subtotal%></strong></div>
+				<div class="col-md-1"><strong><%= @order.tax %></strong></div>
+				<div class="col-md-1"><strong><%= @order.total %></strong></div>
+				<div class="col-md-2">
+					<% if @order.status == 'cart' %>
+						<%= button_to 'Checkout', orders_checkout_path(@order), :method => :get, :class => "btn btn-info" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<% if @order.status == 'checkout' %>	
+		<div class="panel panel-default">
+			<div class="panel-heading"><h3 name="add_div">Address & Payment Details</h3></div>
+			<div class="panel-body">
+				<%= render 'form_billing_and_checkout' %>
+			</div>
+		</div>
+	<% end %>
+	<ul class="pager">
+		<li class="previous">	<%= link_to '<< Products', products_path %></li>
+	</ul>
+</div >

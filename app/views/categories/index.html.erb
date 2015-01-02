@@ -1,0 +1,38 @@
+<h3>Categories-index</h3>
+<ul class="pager">
+	<li><%= link_to 'Add New Category', new_category_path %></li>
+</ul>
+
+<div class="categories">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>Categories</h2>
+            <p>Explore our latest categories from around the world.</p>
+          </div>
+          <div class="col-md-8">
+            <% @categories.in_groups_of(3).each do |categories| %>
+              <% categories.select! {|x| !x.nil?} %>
+              <div class='row'>
+                <% categories.each do |category| %>
+                  <div class='col-md-4'>
+                    <div class="thumbnail">
+                        <img src= <%= category.thumburl %> >
+                        <div class="caption">
+                          <span class="listing-title"><%= category.name %></span>
+                          <span><%= link_to "Edit", edit_category_path(category.id) %></span>
+                          <span><%= link_to 'Show', category %></span>
+                          <td><%= link_to 'Delete', categories_delete_path(:id => category.id) %></td>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+<br>

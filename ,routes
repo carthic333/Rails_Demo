@@ -1,0 +1,52 @@
+                  Prefix Verb   URI Pattern                         Controller#Action
+        line_items_index GET    /line_items/index(.:format)         line_items#index
+         line_items_show GET    /line_items/show(.:format)          line_items#show
+          line_items_new GET    /line_items/new(.:format)           line_items#new
+         line_items_edit GET    /line_items/edit(.:format)          line_items#edit
+       line_items_delete GET    /line_items/delete(.:format)        line_items#delete
+                  orders GET    /orders(.:format)                   orders#index
+                         POST   /orders(.:format)                   orders#create
+               new_order GET    /orders/new(.:format)               orders#new
+              edit_order GET    /orders/:id/edit(.:format)          orders#edit
+                   order GET    /orders/:id(.:format)               orders#show
+                         PATCH  /orders/:id(.:format)               orders#update
+                         PUT    /orders/:id(.:format)               orders#update
+                         DELETE /orders/:id(.:format)               orders#destroy
+           orders_delete GET    /orders/:id/delete(.:format)        orders#delete
+        new_user_session GET    /users/sign_in(.:format)            devise/sessions#new
+            user_session POST   /users/sign_in(.:format)            devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)           devise/sessions#destroy
+           user_password POST   /users/password(.:format)           devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)       devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)      devise/passwords#edit
+                         PATCH  /users/password(.:format)           devise/passwords#update
+                         PUT    /users/password(.:format)           devise/passwords#update
+cancel_user_registration GET    /users/cancel(.:format)             devise/registrations#cancel
+       user_registration POST   /users(.:format)                    devise/registrations#create
+   new_user_registration GET    /users/sign_up(.:format)            devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)               devise/registrations#edit
+                         PATCH  /users(.:format)                    devise/registrations#update
+                         PUT    /users(.:format)                    devise/registrations#update
+                         DELETE /users(.:format)                    devise/registrations#destroy
+                products GET    /products(.:format)                 products#index
+                         POST   /products(.:format)                 products#create
+             new_product GET    /products/new(.:format)             products#new
+            edit_product GET    /products/:id/edit(.:format)        products#edit
+                 product GET    /products/:id(.:format)             products#show
+                         PATCH  /products/:id(.:format)             products#update
+                         PUT    /products/:id(.:format)             products#update
+                         DELETE /products/:id(.:format)             products#destroy
+         products_delete GET    /products/:id/delete(.:format)      products#delete
+    products_add_to_cart POST   /products/:id/add_to_cart(.:format) products#add_to_cart
+              categories GET    /categories(.:format)               categories#index
+                         POST   /categories(.:format)               categories#create
+            new_category GET    /categories/new(.:format)           categories#new
+           edit_category GET    /categories/:id/edit(.:format)      categories#edit
+                category GET    /categories/:id(.:format)           categories#show
+                         PATCH  /categories/:id(.:format)           categories#update
+                         PUT    /categories/:id(.:format)           categories#update
+                         DELETE /categories/:id(.:format)           categories#destroy
+       categories_delete GET    /categories/:id/delete(.:format)    categories#delete
+              pages_home GET    /pages/home(.:format)               pages#home
+              pages_calc GET    /pages/calc(.:format)               pages#calc
+                    root GET    /                                   pages#home
