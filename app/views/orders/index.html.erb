@@ -1,33 +1,33 @@
 <div class="container">
-	<h3>Orders-index</h3>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-md-1"><strong>#</strong></div>
-				<div class="col-md-3"><strong>Shipping Address</strong></div>
-				<div class="col-md-3"><strong>Billing Address</strong></div>
-				<div class="col-md-2"><strong>Status</strong></div>
-				<div class="col-md-1"><strong>Sub Total</strong></div>
-				<div class="col-md-1"><strong>Tax</strong></div>
-				<div class="col-md-1"><strong>Total</strong></div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<% @orders.each do |o| %>
-				<%= link_to order_path(o) do %>
-					<div class="row">
-						<div class="col-md-1"><%= o.id %></div>
-						<div class="col-md-3"><%= o.shipping_address %></div>
-						<div class="col-md-3"><%= o.billing_address %></div>
-						<div class="col-md-2"><%= o.status %></div>
-						<div class="col-md-1"><%= o.subtotal %></div>
-						<div class="col-md-1"><%= o.tax %></div>
-						<div class="col-md-1"><%= o.total %></div>
-					</div>
-				<% end %>
-				<hr>
-			<% end %>
-		</div>
-	</div>
+  <h3>Orders-index</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-1"><strong>#</strong></div>
+        <div class="col-md-3"><strong>Shipping Address</strong></div>
+        <div class="col-md-3"><strong>Billing Address</strong></div>
+        <div class="col-md-2"><strong>Status</strong></div>
+        <div class="col-md-1"><strong>Sub Total</strong></div>
+        <div class="col-md-1"><strong>Tax</strong></div>
+        <div class="col-md-1"><strong>Total</strong></div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <% @orders.each do |o| %>
+        <%= link_to order_path(o) do %>
+          <div class="row">
+            <div class="col-md-1"><%= o.id %></div>
+            <div class="col-md-3"><%= o.shipping_address %></div>
+            <div class="col-md-3"><%= o.billing_address %></div>
+            <div class="col-md-2"><%= o.status %></div>
+            <div class="col-md-1"><%= o.subtotal %></div>
+            <div class="col-md-1"><%= o.tax %></div>
+            <div class="col-md-1"><%= o.total %></div>
+          </div>
+        <% end %>
+        <hr>
+      <% end %>
+    </div>
+  </div>
 </div>
 

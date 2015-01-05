@@ -1,6 +1,6 @@
 <h3>Categories-index</h3>
 <ul class="pager">
-	<li><%= link_to 'Add New Category', new_category_path %></li>
+  <li><%= link_to 'Add New Category', new_category_path %></li>
 </ul>
 
 <div class="categories">
@@ -17,22 +17,20 @@
                 <% categories.each do |category| %>
                   <div class='col-md-4'>
                     <div class="thumbnail">
-                        <img src= <%= category.thumburl %> >
-                        <div class="caption">
-                          <span class="listing-title"><%= category.name %></span>
-                          <span><%= link_to "Edit", edit_category_path(category.id) %></span>
-                          <span><%= link_to 'Show', category %></span>
-                          <td><%= link_to 'Delete', categories_delete_path(:id => category.id) %></td>
-                        </div>
+                      <img src= <%= category.thumburl %> >
+                      <div class="caption">
+                        <span class="listing-title"><%= category.name %></span>
+                        <span><%= link_to "Edit", edit_category_path(category.id) %></span>
+                        <span><%= link_to 'Show', category %></span>
+                        <td><%= link_to 'Delete', categories_delete_path(:id => category.id) %></td>
                       </div>
                     </div>
+                  </div>
                 <% end %>
               </div>
             <% end %>
-
           </div>
         </div>
-
       </div>
     </div>
 <br>
