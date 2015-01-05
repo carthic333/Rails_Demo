@@ -1,10 +1,15 @@
 require 'rails_helper'
-before_action :authenticate_user!
 
 RSpec.describe ProductsController, :type => :controller do
+  Products.before :each do
+    @user = FactoryGirl.create :user
+    sign_in @user
+  end
 	it "assigns @products" do
+    #sign_in :product, @user
 		products = Product.all
 		get :index
+    binding.pry
 		expect(assigns(:products)).to eq(products)
 	end
 

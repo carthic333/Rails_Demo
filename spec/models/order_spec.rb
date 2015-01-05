@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Order, :type => :model do
 	let(:order) { FactoryGirl.create(:order) }
+	let(:line_items) { FactoryGirl.create(:line_item) }
 	it "do not have empty shiping address" do
 		expect(order.shipping_address).not_to be_empty
 	end
@@ -29,4 +30,10 @@ RSpec.describe Order, :type => :model do
 		expect(order.subtotal).to be >= 0
 		expect(order.tax).to be >= 0
 	end
+
+  it "should have zero total when there are no items" do
+    binding.pry
+    # expect { product.add_to_cart(1, user) }.to change(LineItem, :count).by(1)
+    # expect{ order.total }.to be_true
+  end
 end

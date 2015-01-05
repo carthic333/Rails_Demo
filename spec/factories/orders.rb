@@ -8,7 +8,7 @@ FactoryGirl.define do
 		total 144
 		association :user
 
-		trait :order1 do
+		trait :order_empty do
 			shipping_address ""
 			billing_address ""
 			status ""
@@ -17,7 +17,7 @@ FactoryGirl.define do
 			total 
 		end
 
-		trait :order2 do
+		trait :order do
 			subtotal 123
 			tax 21
 			total 145
