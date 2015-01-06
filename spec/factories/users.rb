@@ -1,7 +1,12 @@
 FactoryGirl.define do
   factory :user do
-    email "karthik@test2.com"
+    email "user@test.com"
 		password "akjhdksajbcsakcak"
+
+    trait :user2 do
+      email "user2@test.com"
+      password "asasksaicnakcsakjcn"
+    end
   end
 
 end

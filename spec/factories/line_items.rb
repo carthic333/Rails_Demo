@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :line_item do
-		unit_price 123
-		tax 21
-		total 144
+		# unit_price 123
+		# tax 21
+		# total 144
 		quantity 2
 		association :order
 		association :product

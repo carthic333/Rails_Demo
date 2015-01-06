@@ -3,9 +3,9 @@ FactoryGirl.define do
 		shipping_address "#some address Here"
 		billing_address "#some address Here"
 		status "cart"
-		subtotal 123
-		tax 21
-		total 144
+		subtotal 0
+		tax 0
+		total 0
 		association :user
 
 		trait :order_empty do
