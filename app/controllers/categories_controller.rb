@@ -15,8 +15,12 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
+      flash[:notice] = "Category added Successfully"
       redirect_to(:action => 'index')
     else
+      str = ''
+      @category.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
+      flash[:notice] = str
       render('new')
     end
   end
@@ -28,9 +32,13 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
+      flash[:notice] = "Category updated Successfully"
       redirect_to(:action => 'show', :id => @category.id)
     else
-      render('index')
+      str = ''
+      @category.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
+      flash[:notice] = str
+      render('edit')
     end
   end
 
@@ -40,6 +48,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     Category.find(params[:id]).destroy
+    flash[:notice] = "Category deleted Successfully"
     redirect_to(:action => 'index') 
   end
 

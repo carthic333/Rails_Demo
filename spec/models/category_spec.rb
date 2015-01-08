@@ -21,7 +21,7 @@ RSpec.describe Category, :type => :model do
     expect{ category_no_name.save }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "should raise error when saving a category without a name" do
+  it "should raise error when saving a category without a url" do
     expect{ category_no_url.save }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end

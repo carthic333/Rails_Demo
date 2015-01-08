@@ -1,20 +1,7 @@
 class LineItemsController < ApplicationController
-  def index
-    @line_items = LineItem.all
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
   def delete
-    LineItem.find(params[:id]).remove
-    redirect_to(:back)
+    order = LineItem.find(params[:id]).remove
+    redirect_to order_path(order)
   end
   
   def update_quantity

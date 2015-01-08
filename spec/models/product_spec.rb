@@ -84,6 +84,6 @@ RSpec.describe Product, :type => :model do
     expect {
       product.add_to_cart(1, user)
       product.add_to_cart(1, user)
-    }.to change(LineItem, :count).by(1)
+    }.to change(LineItem, :count).by(2)
   end
 end

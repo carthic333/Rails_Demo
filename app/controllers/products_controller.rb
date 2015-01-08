@@ -16,8 +16,12 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      flash[:notice] = "Product added Successfully"
       redirect_to(:action => 'index')
     else
+      str = ''
+      @product.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
+      flash[:notice] = str
       render('new')
     end
   end
@@ -29,9 +33,13 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
+      flash[:notice] = "Product updated Successfully"
       redirect_to(:action => 'show', :id => @product.id)
     else
-      render('index')
+      str = ''
+      @product.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
+      flash[:notice] = str
+      render('edit')
     end
   end
 
@@ -41,6 +49,7 @@ class ProductsController < ApplicationController
   
   def destroy
     Product.find(params[:id]).destroy
+    flash[:notice] = "Product deleted Successfully"
     redirect_to(:action => 'index')
   end
   

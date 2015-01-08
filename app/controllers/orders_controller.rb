@@ -9,22 +9,16 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def new
-    @order = Order.new
-  end
-
   def create
     @order = Order.new(order_params)
     if @order.save
+      flash[:notice] = "Order created Successfully"
       redirect_to(:action => 'index')
     else
       render('new')
     end
   end
 
-  def edit
-  end
-  
   def checkout
     order = Order.find(params[:id])
     order.update_attributes(status: 'checkout')
@@ -40,12 +34,9 @@ class OrdersController < ApplicationController
   
   def cancel
     Order.find(params[:id]).update_attributes(status: 'cancelled')
+    flash[:notice] = "Order Cancelled"
     redirect_to orders_path
   end
-
-  def delete
-  end
-
   private
   def order_params
     params.require(:order).permit(:shipping_address, :billing_address, :status)

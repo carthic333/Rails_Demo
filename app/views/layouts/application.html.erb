@@ -37,8 +37,10 @@
         <% end %>
       </ul>
     </nav>
-      
-    <p class="notice"><%= notice %></p>
+    
+    <% if notice %>
+      <h4 class="notice">Notice: <%= notice %></h4>
+    <% end %>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>

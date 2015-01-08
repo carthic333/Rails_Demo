@@ -21,7 +21,21 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  # <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: rails_karthik_test
+  pool: 10
+  username: devs
+  password: zxcv1234
+  host: centos
+  timeout: 5000
+  
+  # SQLITE 3 creds.
+  # adapter: sqlite3
+  # database: db/test.sqlite3
+  # pool: 5
+  # timeout: 5000
 
 production:
   <<: *default

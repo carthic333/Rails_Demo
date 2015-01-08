@@ -64,4 +64,8 @@ RSpec.describe Order, :type => :model do
       expect( order.total ).to eq(order.subtotal + order.tax)
     end
   end
+
+  it "should cancel the order" do
+    # expect(order.status == 'cancelled').to change{order.status}.to eq('cancelled')
+  end
 end
