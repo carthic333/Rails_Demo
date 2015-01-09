@@ -1,15 +1,22 @@
-<h1>Categories#delete</h1>
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<div class='container'>
+  <h3>Categories-Delete</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>
+        <strong>Name:</strong>
+        <%= @category.name  %>
+      </h4>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <%= image_tag @category.image(:medium) %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Thumburl:</strong>
-  <%= image_tag @category.thumburl %>
-</p>
-
-<%= link_to "Delete", @category, method: :delete %> |
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
-
+  <div class="pager">
+    <%= link_to "Delete", @category, method: :delete %> |
+    <%= link_to 'Edit', edit_category_path(@category) %> |
+    <%= link_to 'Back', categories_path %>
+  </div>
+</div>

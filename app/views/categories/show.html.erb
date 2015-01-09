@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-2">
       <div class="thumbnail">
-        <%= image_tag @category.thumburl %>
+        <%= image_tag @category.image(:medium) %>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
     <% products.each do |product| %>
       <div class='col-md-4'>
         <div class="thumbnail">
-            <img src= <%= product.thumburl %> >
+            <%= image_tag product.image(:thumbnail) %>
             <div class="caption">
               <span class="listing-title"><%= product.product_name %></span>
               <span class="listing-desc"><%= product.description %></span>

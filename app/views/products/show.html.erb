@@ -1,4 +1,4 @@
-<h2>Products#show</h2>
+<h3>Products-show</h3>
 <p>
   <strong>Product name:</strong>
   <%= @product.product_name %>
@@ -16,7 +16,7 @@
 
 <p>
   <strong>Thumburl:</strong>
-  <%= @product.thumburl %>
+  <%= image_tag @product.image.url(:medium) %> 
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |

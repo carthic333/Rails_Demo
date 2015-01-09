@@ -1,6 +1,10 @@
 class Product < ActiveRecord::Base
   belongs_to :category
   has_many :line_items
+  
+  # Paperclip intgration
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumbnail => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   validates :product_name, :category_id, :thumburl, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }

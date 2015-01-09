@@ -17,7 +17,12 @@
   </div>
   <div class="thumburl">
     <%= f.label :thumburl %><br>
-    <%= f.url_field :thumburl %><br>
+    <% if @product.image.exists? %>
+      <%= image_tag @product.image(:thumbnail) %>
+      <%= check_box :delete, :checked %>
+      <span>Delete</span>
+    <% end %>
+    <%= f.file_field :image %>
   </div>
   <div class="tax_rate">
     <%= f.label :tax_rate %><br>

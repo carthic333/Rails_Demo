@@ -39,9 +39,11 @@
     </nav>
     
     <% if notice %>
-      <h4 class="notice">Notice: <%= notice %></h4>
+      <h4 class="notice alert alert-success">Notice: <%= notice %></h4>
     <% end %>
-    <p class="alert"><%= alert %></p>
+    <% if alert %>
+      <h4 class="alert alert-warning"><%= alert %></h4>
+    <% end %>
 
     <%= yield %>
 
