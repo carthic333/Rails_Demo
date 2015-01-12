@@ -16,7 +16,7 @@
             <% categories.each do |category| %>
               <div class='col-md-4'>
                 <div class="thumbnail">
-                  <%= image_tag category.image(:thumbnail) %>
+                  <%= image_tag category.image(:thumbnail), class: "img-thumbnail" %>
                   <div class="caption">
                   <center>
                     <span class="listing-title label label-default"><%= category.name %></span><br>

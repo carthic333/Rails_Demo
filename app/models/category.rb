@@ -6,5 +6,4 @@ class Category < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   
   validates :name, presence:true
-  validates :thumburl, format: { with: URI::regexp(%w(http https)) }
 end

@@ -37,15 +37,16 @@
         <% end %>
       </ul>
     </nav>
-    
-    <% if notice %>
-      <h4 class="notice alert alert-success">Notice: <%= notice %></h4>
-    <% end %>
-    <% if alert %>
-      <h4 class="alert alert-warning"><%= alert %></h4>
-    <% end %>
 
-    <%= yield %>
+    <div class="container">    
+      <% if notice %>
+        <h4 class="notice alert alert-success">Notice: <%= notice %></h4>
+      <% end %>
+      <% if alert %>
+        <h4 class="alert alert-warning"><%= alert %></h4>
+      <% end %>
 
+      <%= yield %>
+    </div>
   </body>
 </html>

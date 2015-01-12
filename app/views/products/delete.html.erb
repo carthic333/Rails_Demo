@@ -1,25 +1,27 @@
-<h1>Products#delete</h1>
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
+<div class="container">
+  <h3>Products-delete</h3>
+  <p>
+    <strong>Product name:</strong>
+    <%= @product.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @product.description %>
+  </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+  <p>
+    <strong>Price:</strong>
+    <%= @product.price %>
+  </p>
 
-<p>
-  <strong>Thumburl:</strong>
-  <%= @product.thumburl %>
-</p>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @product.image.url(:medium), class: "img-thumbnail" %> 
+  </p>
 
-<%= link_to 'Delete', @product, method: :delete%> |
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <%= link_to 'Delete', @product, method: :delete%> |
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+</div>
 

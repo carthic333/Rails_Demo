@@ -1,7 +1,7 @@
-<h3>Categories-new</h3>
-<h3>New Category</h3>
-
-<!-- Render form here -->
-<%= render 'form' %>
-
-<%= link_to 'Back', categories_path %>
+<div class="container">
+  <h3>Categories-new</h3>
+  <%= render 'form' %>
+  <ul class="pager">
+    <li><%= link_to 'Back', categories_path %></li>
+  </ul>
+</div>

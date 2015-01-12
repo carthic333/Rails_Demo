@@ -38,7 +38,7 @@ RSpec.describe CategoriesController, :type => :controller do
   end
 
   it "create should have response status 302" do
-    post :create, :category => { name: "category1", thumburl: "https://www.google.com/123.jpg" }
+    post :create, :category => { name: "category1", description: "some description" }
     expect(response.status).to eq(302)
     expect(response).to redirect_to(controller: :categories, action: :index)
   end
