@@ -22,7 +22,6 @@ RSpec.describe CategoriesController, :type => :controller do
   it "assigns new category" do
     category_new = Category.new
     get :new
-    binding.pry
     expect(assigns(:category).id).to eq(category_new.id)
   end
 
@@ -42,5 +41,20 @@ RSpec.describe CategoriesController, :type => :controller do
     post :create, :category => { name: "category1", thumburl: "https://www.google.com/123.jpg" }
     expect(response.status).to eq(302)
     expect(response).to redirect_to(controller: :categories, action: :index)
+  end
+
+  it "should have attached file / allows image to be added to category" do 
+    expect(category).to have_attached_file(:image) 
+  end
+
+  it "should not have attached file / allows image to be removed from category" do 
+    # category.image = nil
+    # expect(category.image.exists?).to eq(false)
+    
+    # ^ OR V
+    category.image = nil
+    get :edit, :id => category.id
+    expect(assigns(:category).id).to eq(category.id)
+    expect(category.image.exists?).to eq(false)
   end
 end

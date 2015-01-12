@@ -24,8 +24,4 @@ RSpec.describe Category, :type => :model do
   it "should raise error when saving a category without a url" do
     expect{ category_no_url.save }.to raise_error(ActiveRecord::RecordInvalid)
   end
-
-  it "should have attached file / allows image to be added to category" do 
-    expect(category).to have_attached_file(:image) 
-  end
 end
