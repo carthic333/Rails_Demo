@@ -69,7 +69,9 @@ RSpec.describe Product, :type => :model do
   it "should increase lineitem qty when existing product is added" do
     expect {
       product.add_to_cart(1, user)
-      product.add_to_cart(1, user)
-    }.to change(LineItem, :count).by(2)
+      product.add_to_cart(5, user)
+    }.to change(LineItem, :count).by(1)
+
+    expect(LineItem.first.quantity).to eq(6)
   end
 end

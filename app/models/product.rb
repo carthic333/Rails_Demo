@@ -2,9 +2,10 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :line_items
   
+  include Image 
   # Paperclip intgration
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumbnail => "100x100>" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  # has_attached_file :image, :styles => { :medium => "300x300>", :thumbnail => "100x100>" }, :default_url => "/images/:style/missing.png"
+  # validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   validates :name, :category_id, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
@@ -15,7 +16,12 @@ class Product < ActiveRecord::Base
     order = Order.find_by(user_id: current_user.id, status: 'cart')
     order ||= Order.create(user_id: current_user.id)
     if order
-      lineitem = LineItem.create(order_id: order.id, product_id: id, quantity: qty)
+      lineitem = order.line_items.where(:product_id => id).first
+      if lineitem
+        lineitem.update_attributes(:quantity => lineitem.quantity + qty)
+      else
+        lineitem = LineItem.create(order_id: order.id, product_id: id, quantity: qty)
+      end
       return order
     end
     false
