@@ -17,3 +17,6 @@
 
 # Ignore all .swp files.
 *.swp
+
+public/system
+public/images

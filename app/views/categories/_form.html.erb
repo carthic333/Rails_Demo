@@ -1,13 +1,25 @@
 <%= form_for(@category) do |f| %>
-  <div class="name">
-    <%= f.label :name%>
-    <%= f.text_field :name%>
-  </div>
-  <div class="thumburl">
-    <%= f.label :thumburl%>
-    <%= f.url_field :thumburl%>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="sizing-addon1"><%= f.label :name %></span>
+      <%= f.text_field :name, class: "form-control"%>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="image">
+      <% if @category.image.exists? %>
+        <%= image_tag @category.image(:thumbnail), class: "img-thumbnail" %>
+        <%= check_box :delete, :checked %>
+        <span>Delete</span>
+      <% end %>
+      <%= f.file_field :image %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </li>
+</ul>
 <% end %>

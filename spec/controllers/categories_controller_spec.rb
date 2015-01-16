@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, :type => :controller do
   let(:category) { FactoryGirl.create(:category) }
+  
   it "assigns @categories" do
     categories = Category.all
     get :index
@@ -37,8 +38,23 @@ RSpec.describe CategoriesController, :type => :controller do
   end
 
   it "create should have response status 302" do
-    post :create, :category => { name: "category1", thumburl: "https://www.google.com/123.jpg" }
+    post :create, :category => { name: "category1", description: "some description" }
     expect(response.status).to eq(302)
-    # expect(response).to render_template(:index)
+    expect(response).to redirect_to(controller: :categories, action: :index)
+  end
+
+  it "should have attached file / allows image to be added to category" do 
+    expect(category).to have_attached_file(:image) 
+  end
+
+  it "should not have attached file / allows image to be removed from category" do 
+    # category.image = nil
+    # expect(category.image.exists?).to eq(false)
+    
+    # ^ OR V
+    category.image = nil
+    get :edit, :id => category.id
+    expect(assigns(:category).id).to eq(category.id)
+    expect(category.image.exists?).to eq(false)
   end
 end

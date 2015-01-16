@@ -9,35 +9,38 @@
     </div>
     <div class="col-md-2">
       <div class="thumbnail">
-        <%= image_tag @category.thumburl %>
+        <%= image_tag @category.image(:medium), class: "img-thumbnail" %>
       </div>
     </div>
   </div>
 
 <div class="pager">
-  <%= link_to 'Edit', edit_category_path(@category) %> |
-  <%= link_to 'Back', categories_path %>
+  <li><%= link_to 'Edit', edit_category_path(@category) %></li>
+  <li> <%= link_to 'Back', categories_path %></li>
 </div>
 
 <h3>Listing products</h3>
-
-<% @products.in_groups_of(3).each do |products| %>
-  <% products.select! {|x| !x.nil?} %>
-  <div class='row'>
-    <% products.each do |product| %>
-      <div class='col-md-4'>
-        <div class="thumbnail">
-            <img src= <%= product.thumburl %> >
+  <% @products.in_groups_of(3).each do |products| %>
+    <% products.select! {|x| !x.nil?} %>
+    <div class='row'>
+      <% products.each do |product| %>
+        <div class='col-md-4'>
+          <div class="thumbnail">
+            <%= image_tag product.image.url(:thumbnail), class: "img-thumbnail" %> 
             <div class="caption">
-              <span class="listing-title"><%= product.product_name %></span>
-              <span class="listing-desc"><%= product.description %></span>
-              <span class="listing-price"><%= number_to_currency(product.price) %></span>
-              <span><%= link_to "Edit", edit_product_path(product.id) %></span>
-              <span><%= link_to "Delete", products_delete_path(:id => product.id) %></span>
+              <center>
+                <span class="listing-title label label-default"><%= product.name %></span><br>
+                <span class="listing-desc"><%= product.description %></span>
+                <span class="listing-price"><%= number_to_currency(product.price) %></span><br>
+                <span><%= link_to "Edit", edit_product_path(product.id) %></span> |
+                <span><%= link_to "Delete", products_delete_path(:id => product.id) %></span> |
+                <span><%= link_to 'Show', product %></span> <br>
+              </center><br>
+              <%=  render 'products/form_add_to_cart', locals: {product: product} %>
             </div>
           </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

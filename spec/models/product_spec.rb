@@ -5,7 +5,7 @@ RSpec.describe Product, :type => :model do
   let(:user) { FactoryGirl.create(:user) }
   
   it "do not have empty product name" do
-    expect(product.product_name).not_to be_empty  
+    expect(product.name).not_to be_empty  
   end
 
   it "do not have empty price" do
@@ -16,21 +16,13 @@ RSpec.describe Product, :type => :model do
     expect(product.price).to be >= 0  
   end
 
-  it "do not have empty thumburl" do
-    expect(product.thumburl).not_to be_empty  
-  end
-
   it "do not have negative tax rate" do
     expect(product.tax_rate).to be >= 0 
   end
 
-  it "should have thumburl prefixed with http or https" do
-    expect(product.thumburl).to match(/^http(s?)\W/)
-  end
-
-  it "should rais error when product_name is empty" do
+  it "should rais error when name is empty" do
     expect { 
-      product.product_name = nil
+      product.name = nil
       product.save! }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
@@ -70,12 +62,6 @@ RSpec.describe Product, :type => :model do
       product.save! }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it "should rais error when thumburl is empty" do
-    expect { 
-      product.thumburl = nil
-      product.save! }.to raise_error(ActiveRecord::RecordInvalid)
-  end
-  
   it "should increase lineitem count by 1 when added" do
     expect { product.add_to_cart(1, user) }.to change(LineItem, :count).by(1)
   end
@@ -83,7 +69,9 @@ RSpec.describe Product, :type => :model do
   it "should increase lineitem qty when existing product is added" do
     expect {
       product.add_to_cart(1, user)
-      product.add_to_cart(1, user)
-    }.to change(LineItem, :count).by(2)
+      product.add_to_cart(5, user)
+    }.to change(LineItem, :count).by(1)
+
+    expect(LineItem.first.quantity).to eq(6)
   end
 end

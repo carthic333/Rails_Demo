@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     else
       str = ''
       @category.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
-      flash[:notice] = str
+      flash[:alert] = str
       render('new')
     end
   end
@@ -31,13 +31,17 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
+    if params[:delete] and params[:delete][:checked].to_i == 1
+      @category.image = nil
+    end
+
     if @category.update_attributes(category_params)
       flash[:notice] = "Category updated Successfully"
       redirect_to(:action => 'show', :id => @category.id)
     else
       str = ''
       @category.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
-      flash[:notice] = str
+      flash[:alert] = str
       render('edit')
     end
   end
@@ -55,6 +59,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :thumburl)
+    params.require(:category).permit(:name, :image)
   end
 end

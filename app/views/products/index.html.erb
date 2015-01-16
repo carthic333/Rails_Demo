@@ -1,5 +1,4 @@
 <div class='container'>
-  <h2>Products-index</h2>
   <ul class="pager">
     <li><%= link_to 'Add New Product', new_product_path %></li>
   </ul>
@@ -10,20 +9,21 @@
       <% products.each do |product| %>
         <div class='col-md-4'>
           <div class="thumbnail">
-              <img src= <%= product.thumburl %> >
-              <div class="caption">
-                <span class="listing-title"><%= product.product_name %></span>
+            <%= image_tag product.image.url(:thumbnail), class: "img-thumbnail" %> 
+            <div class="caption">
+              <center>
+                <span class="listing-title label label-default"><%= product.name %></span><br>
                 <span class="listing-desc"><%= product.description %></span>
-                <span class="listing-price"><%= number_to_currency(product.price) %></span>
-                <span><%= link_to "Edit", edit_product_path(product.id) %></span>
-                <span><%= link_to "Delete", products_delete_path(:id => product.id) %></span> <br/>
-                <%=  render 'form_add_to_cart', locals: {product: product} %>
-              </div>
+                <span class="listing-price"><%= number_to_currency(product.price) %></span><br>
+                <span><%= link_to "Edit", edit_product_path(product.id) %></span> |
+                <span><%= link_to "Delete", products_delete_path(:id => product.id) %></span> |
+                <span><%= link_to 'Show', product %></span> <br>
+              </center><br>
+              <%=  render 'form_add_to_cart', locals: {product: product} %>
             </div>
           </div>
         </div>
       <% end %>
     </div>
   <% end %>
-  <br>
 </div>

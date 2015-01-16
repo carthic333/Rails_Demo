@@ -1,8 +1,7 @@
-<h1>Products#new</h1>
-
-<h1>New Product</h1>
-
-<!-- Render form here -->
-<%= render 'form'%>
-
-<%= link_to 'Back', products_path %>
+<div class="container">
+  <h3>New Product</h3>
+  <%= render 'form'%>
+  <ul class="pager">
+    <li><%= link_to 'Back', products_path %></li>
+  </ul>
+</div>

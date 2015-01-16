@@ -1,24 +1,26 @@
-<h2>Products#show</h2>
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
+<div class="container">
+  <h3>Products-show</h3>
+  <p>
+    <strong>Product name:</strong>
+    <%= @product.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @product.description %>
+  </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+  <p>
+    <strong>Price:</strong>
+    <%= @product.price %>
+  </p>
 
-<p>
-  <strong>Thumburl:</strong>
-  <%= @product.thumburl %>
-</p>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @product.image.url(:medium), class: "img-thumbnail" %> 
+  </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
-              <%=  render 'form_add_to_cart', locals: {product: @product} %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+  <%=  render 'form_add_to_cart', locals: {product: @product} %>
+</div>

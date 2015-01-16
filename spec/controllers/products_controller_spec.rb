@@ -42,4 +42,19 @@ RSpec.describe ProductsController, :type => :controller do
     expect(response.status).to eq(302)
     expect(response).to redirect_to(controller: :orders, action: :show, id: Order.where(status: "cart").first.id)
   end
+
+  it "should have attached file / allows image to be added to product" do 
+    expect(product).to have_attached_file(:image) 
+  end
+
+  it "should not have attached file / allows image to be removed from product" do 
+    # product.image = nil
+    # expect(product.image.exists?).to eq(false)
+    
+    # ^ OR V
+    product.image = nil
+    get :edit, :id => product.id
+    expect(assigns(:product).id).to eq(product.id)
+    expect(product.image.exists?).to eq(false)
+  end
 end

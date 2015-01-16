@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     else
       str = ''
       @product.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
-      flash[:notice] = str
+      flash[:alert] = str
       render('new')
     end
   end
@@ -32,13 +32,17 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    if params[:delete] and params[:delete][:checked].to_i == 1
+      @product.image = nil
+    end
+
     if @product.update_attributes(product_params)
       flash[:notice] = "Product updated Successfully"
       redirect_to(:action => 'show', :id => @product.id)
     else
       str = ''
       @product.errors.messages.each { |key, value| str += "#{key} #{value[0]}," }
-      flash[:notice] = str
+      flash[:alert] = str
       render('edit')
     end
   end
@@ -64,6 +68,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:product_name, :description, :price, :thumburl, :tax_rate, :category_id)
+    params.require(:product).permit(:name, :description, :price, :tax_rate, :category_id, :image)
   end
 end

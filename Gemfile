@@ -35,11 +35,14 @@ gem 'devise'
 # PG Gem for POSTGRESQLt:
 gem 'pg'
 
-#rspec-rails Gem for Automated testing 
+# rspec-rails Gem for Automated testing 
 gem 'rspec-rails', '~> 3.0' 
 
-#Factory Girls rails Gem for Automated testing 
+# Factory Girls rails Gem for Automated testing 
 gem 'factory_girl_rails'
+
+# Paperclip Gem for Image and Attachments
+gem "paperclip", "~> 4.2"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
